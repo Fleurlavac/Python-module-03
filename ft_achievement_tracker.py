@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  ft_achievement_tracker.py                         :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: fcaval <fcaval@student.42.fr>             +#+  +:+       +#+         #
+#  By: Fleur <Fleur@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/23 11:31:19 by fcaval          #+#    #+#               #
-#  Updated: 2026/01/23 15:40:39 by fcaval          ###   ########.fr        #
+#  Updated: 2026/01/27 21:03:18 by Fleur           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -65,7 +65,7 @@ def achievement() -> None:
     print(f"✌️ All unique achievements: {all_achievement}")
     print(f"🎯 Total unique achievements: {len(all_achievement)}\n")
 
-    commun_achievement = set.intersection(player1.achievements, 
+    commun_achievement = set.intersection(player1.achievements,
                                           player2.achievements,
                                           player3.achievements)
     print(f"🎉 Common to all players: {commun_achievement}")
@@ -75,13 +75,14 @@ def achievement() -> None:
         (player3.achievements - player1.achievements - player2.achievements)
     )
     print(f"🏆​ Rare achievements (1 player): {rare_achievement}\n")
-    
+
     diff1 = player1.achievements.intersection(player2.achievements)
     diff2 = player1.achievements.difference(player2.achievements)
     diff3 = player2.achievements.difference(player1.achievements)
     print(f"🤜 Alice vs Bob common: {diff1}")
     print(f"🤜 Alice unique: {diff2}")
     print(f"🤜 Bob unique: {diff3}\n")
+
 
 if __name__ == "__main__":
     achievement()

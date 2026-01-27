@@ -6,7 +6,7 @@
 #  By: Fleur <Fleur@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/25 16:20:35 by Fleur           #+#    #+#               #
-#  Updated: 2026/01/25 18:35:49 by Fleur           ###   ########.fr        #
+#  Updated: 2026/01/27 21:05:21 by Fleur           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -22,10 +22,11 @@ def parse_inventory(args) -> dict:
             inventory[item] = int(quantity)
     return inventory
 
+
 def statistics(inventory) -> list:
     moderate = dict()
     scarce = dict()
-    
+
     for item, quantity in inventory.items():
         if quantity >= 4:
             moderate[item] = quantity
@@ -34,7 +35,7 @@ def statistics(inventory) -> list:
     return moderate, scarce
 
 
-def main() -> None: 
+def main() -> None:
 
     if len(sys.argv) < 2:
         print("Usage: python3 ft_inventory_system.py "
@@ -43,13 +44,13 @@ def main() -> None:
 
     print()
     print("=== Inventory System Analysis ===\n")
-    inventory =  parse_inventory(sys.argv)
+    inventory = parse_inventory(sys.argv)
     total_items = sum(inventory.values())
     print(f"Total item in inventory: {total_items}")
     print(f"Unique item types: {len(inventory)}\n")
 
     print("=== Current Inventory ===")
-    for item, quantity in sorted(inventory.items(), key=lambda x: x[1], 
+    for item, quantity in sorted(inventory.items(), key=lambda x: x[1],
                                  reverse=True):
         pourcent = quantity * 100 / total_items
         print(f"{item}: {quantity} units ({pourcent:.1f}%)")
@@ -92,5 +93,6 @@ def main() -> None:
     print("Sample lookup - 'sword' in inventory:", inventory.get("sword")
           is not False)
     print()
-    
+
+
 main()

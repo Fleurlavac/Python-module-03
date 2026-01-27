@@ -6,18 +6,18 @@
 #  By: Fleur <Fleur@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/26 17:06:03 by Fleur           #+#    #+#               #
-#  Updated: 2026/01/26 20:39:46 by Fleur           ###   ########.fr        #
+#  Updated: 2026/01/27 21:06:33 by Fleur           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
 import random
 import time
 
+
 def game_event_chance(event_count: str):
 
     players = ["alice", "bob", "charlie", "arthur", "lana"]
     event = ["killed monster", "found treasure", "leveled up"]
-
 
     for i in range(event_count):
         yield {
@@ -32,11 +32,36 @@ def count_event(events) -> int:
     for event in events:
         count += 1
     return count
-    
+
+
+def fibonnaci():
+    a, b = 0, 1
+    while 1:
+        yield a
+        a, b = b, a + b
+
+
+def is_prime(n) -> bool:
+    i = 2
+    while i < n:
+        if n % i == 0:
+            return False
+        i += 1
+    return True
+
+
+def primes():
+    num = 2
+    while 1:
+        if is_prime(num):
+            yield num
+        num += 1
+
+
 def main() -> None:
     print("\n=== Game Data Stream Processor ===\n")
     start_time = time.time()
-    
+
     event_count = 1000
     print(f"Processing {event_count} game events...\n")
 
@@ -58,7 +83,7 @@ def main() -> None:
         if event["level"] >= 10:
             high_level_players += 1
     print(f"High-level players (10+): {high_level_players}")
-        
+
     events = game_event_chance(event_count)
     treasure = 0
     for event in events:
@@ -79,5 +104,17 @@ def main() -> None:
     print(f"Processing time: {(end_time - start_time):.3f} seconds\n")
 
     print("=== Generator Demonstration ===")
+    result_fibonacci = fibonnaci()
+    print("Fibonnaci sequence (first 10): ", end="")
+    for i in range(10):
+        print(f"{next(result_fibonacci)} ", end="")
+    print()
+
+    print("Prime numbers (first 5): ", end="")
+    result_prime = primes()
+    for i in range(5):
+        print(f"{next(result_prime)} ", end="")
+    print("\n")
+
 
 main()
