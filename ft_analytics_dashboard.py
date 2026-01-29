@@ -6,11 +6,11 @@
 #  By: Fleur <Fleur@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/28 09:41:05 by Fleur           #+#    #+#               #
-#  Updated: 2026/01/28 21:44:26 by Fleur           ###   ########.fr        #
+#  Updated: 2026/01/29 21:21:44 by Fleur           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-players = [
+play = [
     {
         "name": "alice",
         "score": 2300,
@@ -47,72 +47,42 @@ players = [
 ]
 
 
-def list_comprehension():
-    print("=== List Comprehension Examples ===")
-
-    high_score = []
-    for player in players:
-        if player["score"] > 2000:
-            high_score.append(player["name"])
-    print(f"High scores (>2000): {high_score}")
-
-
-    score_doubled = []
-    for player in players:
-        tmp = player["score"]
-        if tmp > 0:
-            tmp *= 2
-            score_doubled.append(tmp)
-    print(f"Scores doubled: {score_doubled}")
-
-    active_players = []
-    for player in players:
-        if player["active"] == True:
-            active_players.append(player["name"])
-    print(f"Active players: {active_players}")
-
-
-def dict_comprehension():
-    player_scores = {}
-    for player in players:
-        name = player["name"]
-        score = player["score"]
-        player_scores[name] = score
-    print(f"Player scores: {player_scores}")
-
-    score_categories = {'high': 0, 'medium': 0, 'low': 0}
-    for player in players:
-        if player["score"] > 2100:
-            score_categories["high"] += 1
-        elif 1900 <= player["score"] <= 2100:
-            score_categories["medium"] += 1
-        else:
-            score_categories["low"] += 1
-    print(f"Score categories: {score_categories}")
-
-    achievements_count = {}
-    for player in players:
-        if player["active"] == True:
-            name = player["name"]
-            achievements = len(player["achievements"])
-            achievements_count[name] = achievements
-    print(f"Achievement counts: {achievements_count}")
-
-
-def set_comprehension():
-            
-
-def main() -> None:
+def main():
     print("\n=== Game Analytics Dashboard ===\n")
 
-    list_comprehension()
-    print()
-    
-    dict_comprehension()
-    print()
+    print("=== List Comprehension Examples ===")
+    high_scores = [p["name"] for p in play if p["score"] > 2000]
+    print(f"High scores (>2000): {high_scores}")
+    score_doubled = [p["score"]*2 for p in play]
+    print(f"Scores doubled: {score_doubled}")
+    active_players = [p["name"] for p in play if p["active"] == True]
+    print(f"Active players: {active_players}")
 
-    set_comprehension()
-    print()
-         
+    print("\n=== Dict Comprehension Examples ===")
+    player_scores = {p["name"]: p["score"] for p in play}
+    print(f"Player scores: {player_scores}")
+    score_categories = {
+        'high': len([p["score"] for p in play if p["score"] > 2100]),
+        'medium': len([p["score"] for p in play if 2100 > p["score"] > 2000]),
+        'low': len([p["score"] for p in play if p["score"] < 2000]),
+    }
+    print(f"Score categories: {score_categories}")
+    achivement_counts = {p["name"]: len(p["achievements"]) for p in play if p["active"] == True}
+    print(f"Achievement counts: {achivement_counts}")
+
+    print("\n=== Set Comprehension Exemples ===")
+    unique_player = {p["name"] for p in play}
+    print(f"Unique players: {unique_player}")
+    unique_achievements = {achievement for p in play for achievement in p["achievements"]}
+    print(f"Unique achivements: {unique_achievements}")
+    active_regions = {p["region"] for p in play}
+    print(f"Active regions: {active_regions}")
+
+    print("\n=== Combined Analysis ===")
+    total_players = len(unique_player)
+    print(f"Total players: {total_players}")
+    total_achievements = [achi for p in play for achi in p["achievements"]]
+    print(f"Total unique achievements: {len(total_achievements)}")
+    
 
 main()
