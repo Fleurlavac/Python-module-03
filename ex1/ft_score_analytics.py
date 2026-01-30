@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  ft_score_analytics.py                             :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: fcaval <fcaval@student.42.fr>             +#+  +:+       +#+         #
+#  By: Fleur <Fleur@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/21 18:59:16 by fcaval          #+#    #+#               #
-#  Updated: 2026/01/21 20:07:45 by fcaval          ###   ########.fr        #
+#  Updated: 2026/01/30 12:09:15 by Fleur           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -20,7 +20,7 @@ def score_analytics() -> None:
     print("\n=== Player Score Analytics ===\n")
     if len(sys.argv) == 1:
         print("No scores provided. Usage: python3 ft_score_analytics.py "
-              "<score1> <score2>\n")
+              "<score1> <score2> ...\n")
         return
 
     try:
